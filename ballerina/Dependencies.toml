@@ -314,7 +314,7 @@ modules = [
 [[package]]
 org = "ballerinax"
 name = "hubspot.crm.properties"
-version = "0.6.0"
+version = "0.1.0"
 dependencies = [
 	{org = "ballerina", name = "http"},
 	{org = "ballerina", name = "oauth2"},
