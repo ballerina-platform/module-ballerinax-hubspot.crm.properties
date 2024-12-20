@@ -112,7 +112,7 @@ Import the `hubspot.properties` module.
 
 ```
 import ballerinax/hubspot.properties as hsproperties;
-
+```
 ## Examples
 
 The `Ballerina HubSpot CRM Properties Connector` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/module-ballerinax-hubspot.crm.properties/tree/main/examples/), covering the following use cases:
