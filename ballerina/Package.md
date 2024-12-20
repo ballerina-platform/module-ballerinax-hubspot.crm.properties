@@ -38,16 +38,16 @@ Within app developer accounts, you can create developer test accounts to test ap
 1. Move to the Auth Tab.
 <img src=https://github.com/ManadaHerath/module-ballerinax-hubspot.crm.properties/blob/34ca417c58f56eb09a787dd89f8ebb546878db2f/docs/resources/create_app_2.png alt="Hubspot app creation 2 testacc3" style="width: 70%;">
 2. In the Scopes section, add necessary scopes for your app using the "Add new scope" button.
-Ex:
-   `crm.objects.contacts.read`
-   `crm.objects.contacts.write`
+<img src=https://github.com/ManadaHerath/module-ballerinax-hubspot.crm.properties/blob/6f8800ecab2b9e4173d466b42d17805457fbc6d2/docs/resources/set_scope.png alt="Hubspot app creation 1 testacc3" style="width: 70%;">
 
 
 4. Add your Redirect URI in the relevant section. You can also use localhost addresses for local development purposes. Click Create App.
+<img src=https://github.com/ManadaHerath/module-ballerinax-hubspot.crm.properties/blob/6f8800ecab2b9e4173d466b42d17805457fbc6d2/docs/resources/create_app_final.png alt="Hubspot app creation 1 testacc3" style="width: 70%;">
 
 ### Step 5: Get your Client ID and Client Secret
 
 - Navigate to the Auth section of your app. Make sure to save the provided Client ID and Client Secret.
+<img src=https://github.com/ManadaHerath/module-ballerinax-hubspot.crm.properties/blob/6f8800ecab2b9e4173d466b42d17805457fbc6d2/docs/resources/get_credentials.png alt="Hubspot app creation 1 testacc3" style="width: 70%;">
 
 ### Step 6: Setup Authentication Flow
 
