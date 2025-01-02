@@ -39,7 +39,7 @@ isolated function testGetAllProperty() returns error? {
 }
 
 @test:Config {
-    groups: ["mock_tests01"]
+    groups: ["mock_tests02"]
 }
 isolated function testPostProperty() returns error? {
     PropertyCreate propertyCreateInput = {
