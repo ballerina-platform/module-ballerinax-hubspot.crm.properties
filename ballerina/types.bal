@@ -60,6 +60,10 @@ public type PropertyCreate record {
     boolean externalOptions?;
 };
 
+public type CollectionResponsePropertyNoPaging record {
+    Property[] results;
+};
+
 public type ErrorDetail record {
     # A specific category that contains more specific detail about the error
     string subCategory?;
@@ -75,10 +79,6 @@ public type ErrorDetail record {
 
 public type BatchInputPropertyCreate record {
     PropertyCreate[] inputs;
-};
-
-public type CollectionResponsePropertyNoPaging record {
-    Property[] results;
 };
 
 # OAuth2 Refresh Token Grant Configs
@@ -185,6 +185,13 @@ public type PropertyName record {
     string name;
 };
 
+# Represents the Queries record for the operation: get-/crm/v3/properties/{objectType}_getAll
+public type GetCrmV3PropertiesObjecttype_getallQueries record {
+    # Whether to return only results that have been archived.
+    boolean archived = false;
+    string properties?;
+};
+
 public type BatchResponseProperty record {
     string completedAt;
     string requestedAt?;
@@ -192,13 +199,6 @@ public type BatchResponseProperty record {
     record {|string...;|} links?;
     Property[] results;
     "PENDING"|"PROCESSING"|"CANCELED"|"COMPLETE" status;
-};
-
-# Represents the Queries record for the operation: get-/crm/v3/properties/{objectType}_getAll
-public type GetCrmV3PropertiesObjecttype_getallQueries record {
-    # Whether to return only results that have been archived.
-    boolean archived = false;
-    string properties?;
 };
 
 public type OptionInput record {
@@ -257,11 +257,6 @@ public type PropertyModificationMetadata record {
     boolean archivable;
 };
 
-public type BatchReadInputPropertyName record {
-    boolean archived;
-    PropertyName[] inputs;
-};
-
 public type PropertyGroupCreate record {
     # The internal property group name, which must be used when referencing the property group via the API.
     string name;
@@ -269,6 +264,11 @@ public type PropertyGroupCreate record {
     int:Signed32 displayOrder?;
     # A human-readable label that will be shown in HubSpot.
     string label;
+};
+
+public type BatchReadInputPropertyName record {
+    boolean archived;
+    PropertyName[] inputs;
 };
 
 public type BatchInputPropertyName record {

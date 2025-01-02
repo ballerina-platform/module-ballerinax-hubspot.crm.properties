@@ -12,7 +12,7 @@ public isolated client class Client {
     # + config - The configurations to be used when initializing the `connector` 
     # + serviceUrl - URL of the target service 
     # + return - An error if connector initialization failed 
-    public isolated function init(ConnectionConfig config, string serviceUrl = "https://api.hubapi.com") returns error? {
+    public isolated function init(ConnectionConfig config, string serviceUrl = "https://api.hubapi.com/crm/v3/properties") returns error? {
         http:ClientConfiguration httpClientConfig = {httpVersion: config.httpVersion, timeout: config.timeout, forwarded: config.forwarded, poolConfig: config.poolConfig, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, validation: config.validation};
         do {
             if config.http1Settings is ClientHttp1Settings {
@@ -50,8 +50,8 @@ public isolated client class Client {
     #
     # + headers - Headers to be sent with the request 
     # + return - No content 
-    resource isolated function delete crm/v3/properties/[string objectType]/[string propertyName](map<string|string[]> headers = {}) returns http:Response|error {
-        string resourcePath = string `/crm/v3/properties/${getEncodedUri(objectType)}/${getEncodedUri(propertyName)}`;
+    resource isolated function delete [string objectType]/[string propertyName](map<string|string[]> headers = {}) returns http:Response|error {
+        string resourcePath = string `/${getEncodedUri(objectType)}/${getEncodedUri(propertyName)}`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app"] = self.apiKeyConfig?.private\-app;
@@ -65,8 +65,8 @@ public isolated client class Client {
     #
     # + headers - Headers to be sent with the request 
     # + return - No content 
-    resource isolated function delete crm/v3/properties/[string objectType]/groups/[string groupName](map<string|string[]> headers = {}) returns http:Response|error {
-        string resourcePath = string `/crm/v3/properties/${getEncodedUri(objectType)}/groups/${getEncodedUri(groupName)}`;
+    resource isolated function delete [string objectType]/groups/[string groupName](map<string|string[]> headers = {}) returns http:Response|error {
+        string resourcePath = string `/${getEncodedUri(objectType)}/groups/${getEncodedUri(groupName)}`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app"] = self.apiKeyConfig?.private\-app;
@@ -81,8 +81,8 @@ public isolated client class Client {
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - successful operation 
-    resource isolated function get crm/v3/properties/[string objectType](map<string|string[]> headers = {}, *GetCrmV3PropertiesObjecttype_getallQueries queries) returns CollectionResponsePropertyNoPaging|error {
-        string resourcePath = string `/crm/v3/properties/${getEncodedUri(objectType)}`;
+    resource isolated function get [string objectType](map<string|string[]> headers = {}, *GetCrmV3PropertiesObjecttype_getallQueries queries) returns CollectionResponsePropertyNoPaging|error {
+        string resourcePath = string `/${getEncodedUri(objectType)}`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app"] = self.apiKeyConfig?.private\-app;
@@ -98,8 +98,8 @@ public isolated client class Client {
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - successful operation 
-    resource isolated function get crm/v3/properties/[string objectType]/[string propertyName](map<string|string[]> headers = {}, *GetCrmV3PropertiesObjecttypePropertyname_getbynameQueries queries) returns Property|error {
-        string resourcePath = string `/crm/v3/properties/${getEncodedUri(objectType)}/${getEncodedUri(propertyName)}`;
+    resource isolated function get [string objectType]/[string propertyName](map<string|string[]> headers = {}, *GetCrmV3PropertiesObjecttypePropertyname_getbynameQueries queries) returns Property|error {
+        string resourcePath = string `/${getEncodedUri(objectType)}/${getEncodedUri(propertyName)}`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app"] = self.apiKeyConfig?.private\-app;
@@ -110,27 +110,27 @@ public isolated client class Client {
         return self.clientEp->get(resourcePath, httpHeaders);
     }
 
-    // # Read all property groups
-    // #
-    // # + headers - Headers to be sent with the request 
-    // # + return - successful operation 
-    // resource isolated function get crm/v3/properties/[string objectType]/groups(map<string|string[]> headers = {}) returns CollectionResponsePropertyGroupNoPaging|error {
-    //     string resourcePath = string `/crm/v3/properties/${getEncodedUri(objectType)}/groups`;
-    //     map<anydata> headerValues = {...headers};
-    //     if self.apiKeyConfig is ApiKeysConfig {
-    //         headerValues["private-app"] = self.apiKeyConfig?.private\-app;
-    //         headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
-    //     }
-    //     map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
-    //     return self.clientEp->get(resourcePath, httpHeaders);
-    // }
+    # Read all property groups
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - successful operation 
+    resource isolated function get [string objectType]/groups(map<string|string[]> headers = {}) returns CollectionResponsePropertyGroupNoPaging|error {
+        string resourcePath = string `/${getEncodedUri(objectType)}/groups`;
+        map<anydata> headerValues = {...headers};
+        if self.apiKeyConfig is ApiKeysConfig {
+            headerValues["private-app"] = self.apiKeyConfig?.private\-app;
+            headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
+        }
+        map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
+        return self.clientEp->get(resourcePath, httpHeaders);
+    }
 
     # Read a property group
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
-    resource isolated function get crm/v3/properties/[string objectType]/groups/[string groupName](map<string|string[]> headers = {}) returns PropertyGroup|error {
-        string resourcePath = string `/crm/v3/properties/${getEncodedUri(objectType)}/groups/${getEncodedUri(groupName)}`;
+    resource isolated function get [string objectType]/groups/[string groupName](map<string|string[]> headers = {}) returns PropertyGroup|error {
+        string resourcePath = string `/${getEncodedUri(objectType)}/groups/${getEncodedUri(groupName)}`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app"] = self.apiKeyConfig?.private\-app;
@@ -144,8 +144,8 @@ public isolated client class Client {
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
-    resource isolated function patch crm/v3/properties/[string objectType]/[string propertyName](PropertyUpdate payload, map<string|string[]> headers = {}) returns Property|error {
-        string resourcePath = string `/crm/v3/properties/${getEncodedUri(objectType)}/${getEncodedUri(propertyName)}`;
+    resource isolated function patch [string objectType]/[string propertyName](PropertyUpdate payload, map<string|string[]> headers = {}) returns Property|error {
+        string resourcePath = string `/${getEncodedUri(objectType)}/${getEncodedUri(propertyName)}`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app"] = self.apiKeyConfig?.private\-app;
@@ -162,8 +162,8 @@ public isolated client class Client {
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
-    resource isolated function patch crm/v3/properties/[string objectType]/groups/[string groupName](PropertyGroupUpdate payload, map<string|string[]> headers = {}) returns PropertyGroup|error {
-        string resourcePath = string `/crm/v3/properties/${getEncodedUri(objectType)}/groups/${getEncodedUri(groupName)}`;
+    resource isolated function patch [string objectType]/groups/[string groupName](PropertyGroupUpdate payload, map<string|string[]> headers = {}) returns PropertyGroup|error {
+        string resourcePath = string `/${getEncodedUri(objectType)}/groups/${getEncodedUri(groupName)}`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app"] = self.apiKeyConfig?.private\-app;
@@ -180,8 +180,8 @@ public isolated client class Client {
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
-    resource isolated function post crm/v3/properties/[string objectType](PropertyCreate payload, map<string|string[]> headers = {}) returns Property|error {
-        string resourcePath = string `/crm/v3/properties/${getEncodedUri(objectType)}`;
+    resource isolated function post [string objectType](PropertyCreate payload, map<string|string[]> headers = {}) returns Property|error {
+        string resourcePath = string `/${getEncodedUri(objectType)}`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app"] = self.apiKeyConfig?.private\-app;
@@ -198,8 +198,8 @@ public isolated client class Client {
     #
     # + headers - Headers to be sent with the request 
     # + return - No content 
-    resource isolated function post crm/v3/properties/[string objectType]/batch/archive(BatchInputPropertyName payload, map<string|string[]> headers = {}) returns http:Response|error {
-        string resourcePath = string `/crm/v3/properties/${getEncodedUri(objectType)}/batch/archive`;
+    resource isolated function post [string objectType]/batch/archive(BatchInputPropertyName payload, map<string|string[]> headers = {}) returns http:Response|error {
+        string resourcePath = string `/${getEncodedUri(objectType)}/batch/archive`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app"] = self.apiKeyConfig?.private\-app;
@@ -216,8 +216,8 @@ public isolated client class Client {
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
-    resource isolated function post crm/v3/properties/[string objectType]/batch/create(BatchInputPropertyCreate payload, map<string|string[]> headers = {}) returns BatchResponseProperty|BatchResponsePropertyWithErrors|error {
-        string resourcePath = string `/crm/v3/properties/${getEncodedUri(objectType)}/batch/create`;
+    resource isolated function post [string objectType]/batch/create(BatchInputPropertyCreate payload, map<string|string[]> headers = {}) returns BatchResponseProperty|BatchResponsePropertyWithErrors|error {
+        string resourcePath = string `/${getEncodedUri(objectType)}/batch/create`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app"] = self.apiKeyConfig?.private\-app;
@@ -234,8 +234,8 @@ public isolated client class Client {
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
-    resource isolated function post crm/v3/properties/[string objectType]/batch/read(BatchReadInputPropertyName payload, map<string|string[]> headers = {}) returns BatchResponseProperty|BatchResponsePropertyWithErrors|error {
-        string resourcePath = string `/crm/v3/properties/${getEncodedUri(objectType)}/batch/read`;
+    resource isolated function post [string objectType]/batch/read(BatchReadInputPropertyName payload, map<string|string[]> headers = {}) returns BatchResponseProperty|BatchResponsePropertyWithErrors|error {
+        string resourcePath = string `/${getEncodedUri(objectType)}/batch/read`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app"] = self.apiKeyConfig?.private\-app;
@@ -252,8 +252,8 @@ public isolated client class Client {
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
-    resource isolated function post crm/v3/properties/[string objectType]/groups(PropertyGroupCreate payload, map<string|string[]> headers = {}) returns PropertyGroup|error {
-        string resourcePath = string `/crm/v3/properties/${getEncodedUri(objectType)}/groups`;
+    resource isolated function post [string objectType]/groups(PropertyGroupCreate payload, map<string|string[]> headers = {}) returns PropertyGroup|error {
+        string resourcePath = string `/${getEncodedUri(objectType)}/groups`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app"] = self.apiKeyConfig?.private\-app;
