@@ -4,12 +4,8 @@ import ballerina/test;
 import ballerina/io;
 import ballerina/http;
 
-// import ballerina/time;
-
-
-
-
-configurable string serviceUrl = "https://api.hubapi.com";
+configurable boolean isLive = true;
+configurable string serviceUrl = isLive ? "https://api.hubapi.com" : "http://localhost:9090" ;
 configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string refreshToken = ?;
@@ -33,20 +29,20 @@ final Client hubspot = check new Client(config, serviceUrl);
 // Core
 
 @test:Config {
-    groups: ["live_tests", "mock_tests"]
+    groups: ["live_tests", "mock_tests02"]
 }
 isolated function testGetAllProperty() returns error? {
-
+    
     CollectionResponsePropertyNoPaging response = check hubspot->/crm/v3/properties/[testObjectType].get();
+    io:println(response);
     test:assertTrue(response?.results.length() > 0, msg = "Expected non-empty results for successful property group deletion");
 }
 
 @test:Config {
-    groups: ["mock_tests"]
+    groups: ["mock_tests01"]
 }
 isolated function testPostProperty() returns error? {
-
-    Property response = check hubspot->/crm/v3/properties/[testObjectType].post(payload = {
+    PropertyCreate propertyCreateInput = {
         "hidden": false,
         "displayOrder": 2,
         "description": "string",
@@ -59,13 +55,14 @@ isolated function testPostProperty() returns error? {
         "hasUniqueValue": false,
         "fieldType": "select",
         "externalOptions": true
-      });
+      };
+    Property response = check hubspot->/crm/v3/properties/[testObjectType].post(payload = propertyCreateInput);
   io:println(response);
   test:assertTrue(response.length()>0, msg = "Expected response came"  );
 }
 
 @test:Config {
-    groups: ["live_tests", "mock_tests"]
+    groups: ["live_tests", "mock_tests01"]
 }
 isolated function testgetAProperty() returns error?{ 
   Property response = check hubspot->/crm/v3/properties/[testObjectType]/[testPropertyName].get();
@@ -73,7 +70,7 @@ isolated function testgetAProperty() returns error?{
 }
 
 @test:Config {
-  groups: ["mock_tests"]
+  groups: ["mock_tests01"]
 }
 isolated function testupdateAProperty() returns error?{ 
   Property response = check hubspot->/crm/v3/properties/[testObjectType]/[testPropertyName].patch(payload = {
@@ -105,12 +102,13 @@ isolated function testupdateAProperty() returns error?{
     "fieldType": "select",
     "externalOptions": true
 });
+  io:println(response);
   test:assertTrue(response.length()>0);
 }
 
 
 @test:Config {
-    groups: ["mock_tests"]
+    groups: ["mock_tests01"]
 }
 isolated function testArchiveProperty() returns error?{ 
   http:Response response = check hubspot->/crm/v3/properties/[testObjectType]/[testPropertyName].delete();
@@ -122,7 +120,7 @@ isolated function testArchiveProperty() returns error?{
 // Group
 
 @test:Config {
-    groups: ["live_tests", "mock_tests"]
+    groups: ["live_tests", "mock_tests01"]
 }
 isolated function testGetGroupProperty() returns error?{ 
   PropertyGroup response = check hubspot->/crm/v3/properties/[testObjectType]/groups/[testGroupName]();
@@ -140,14 +138,15 @@ isolated function testGetGroupProperty() returns error?{
 
 @test:Config {
     before: testDeletePropertyGroup,
-    groups: ["live_tests", "mock_tests"]
+    groups: ["live_tests", "mock_tests01"]
 }
 isolated function testCreatePropertyGroup() returns error?{ 
-  PropertyGroup response = check hubspot->/crm/v3/properties/[testObjectType]/groups.post(
-    payload = { "name": "propertygrouptest1",
+  PropertyGroupCreate propertyGroupInput = { "name": "propertygrouptest1",
                 "displayOrder": -1,
-                "label": "My Property Group testyo"});
-  test:assertTrue(response.length()>0);
+                "label": "My Property Group testyo"};
+  PropertyGroup response = check hubspot->/crm/v3/properties/[testObjectType]/groups.post(
+    payload = propertyGroupInput);
+  test:assertTrue(response.length()>0 && response.name=="propertygrouptest1");
 }
 
 @test:Config {
@@ -191,7 +190,7 @@ isolated function testgetPropertyBatch() returns error?{
 
 
 @test:Config {
-    groups: ["mock_tests"]
+    groups: ["mock_tests01"]
 }
 isolated function testCreateBatchProperty() returns error?{ 
   BatchResponseProperty response = check hubspot->/crm/v3/properties/[testObjectType]/batch/create.post(
@@ -231,7 +230,7 @@ isolated function testCreateBatchProperty() returns error?{
 }
 
 @test:Config {
-    groups: ["mock_tests"]
+    groups: ["mock_tests01"]
 }
 isolated function testArchivePropertyBatch() returns error?{ 
   http:Response response = check hubspot->/crm/v3/properties/[testObjectType]/batch/archive.post(
@@ -239,6 +238,5 @@ isolated function testArchivePropertyBatch() returns error?{
       "name": testPropertyName
     }]}
   );
-  io:println(response.statusCode);
   test:assertTrue(response.statusCode==204);
 }

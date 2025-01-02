@@ -110,20 +110,20 @@ public isolated client class Client {
         return self.clientEp->get(resourcePath, httpHeaders);
     }
 
-    # Read all property groups
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - successful operation 
-    resource isolated function get crm/v3/properties/[string objectType]/groups(map<string|string[]> headers = {}) returns CollectionResponsePropertyGroupNoPaging|error {
-        string resourcePath = string `/crm/v3/properties/${getEncodedUri(objectType)}/groups`;
-        map<anydata> headerValues = {...headers};
-        if self.apiKeyConfig is ApiKeysConfig {
-            headerValues["private-app"] = self.apiKeyConfig?.private\-app;
-            headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
-        }
-        map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
-        return self.clientEp->get(resourcePath, httpHeaders);
-    }
+    // # Read all property groups
+    // #
+    // # + headers - Headers to be sent with the request 
+    // # + return - successful operation 
+    // resource isolated function get crm/v3/properties/[string objectType]/groups(map<string|string[]> headers = {}) returns CollectionResponsePropertyGroupNoPaging|error {
+    //     string resourcePath = string `/crm/v3/properties/${getEncodedUri(objectType)}/groups`;
+    //     map<anydata> headerValues = {...headers};
+    //     if self.apiKeyConfig is ApiKeysConfig {
+    //         headerValues["private-app"] = self.apiKeyConfig?.private\-app;
+    //         headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
+    //     }
+    //     map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
+    //     return self.clientEp->get(resourcePath, httpHeaders);
+    // }
 
     # Read a property group
     #
