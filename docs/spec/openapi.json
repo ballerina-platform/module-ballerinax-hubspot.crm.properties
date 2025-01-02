@@ -19,7 +19,7 @@
       "x-hubspot-introduction" : "Use the properties API to store information in fields on individual contact records. You can use this API to manage existing default and custom properties, create new custom properties, and more."
     },
     "servers" : [ {
-      "url" : "https://api.hubapi.com"
+      "url" : "https://api.hubapi.com/crm/v3/properties"
     } ],
     "tags" : [ {
       "name" : "Batch"
@@ -29,7 +29,7 @@
       "name" : "Core"
     } ],
     "paths" : {
-      "/crm/v3/properties/{objectType}/batch/archive" : {
+      "/{objectType}/batch/archive" : {
         "post" : {
           "tags" : [ "Batch" ],
           "summary" : "Archive a batch of properties",
@@ -115,7 +115,7 @@
           } ]
         }
       },
-      "/crm/v3/properties/{objectType}/groups/{groupName}" : {
+      "/{objectType}/groups/{groupName}" : {
         "get" : {
           "tags" : [ "Groups" ],
           "summary" : "Read a property group",
@@ -534,7 +534,7 @@
           } ]
         }
       },
-      "/crm/v3/properties/{objectType}/{propertyName}" : {
+      "/{objectType}/{propertyName}" : {
         "get" : {
           "tags" : [ "Core" ],
           "summary" : "Read a property",
@@ -973,7 +973,7 @@
           } ]
         }
       },
-      "/crm/v3/properties/{objectType}/batch/read" : {
+      "/{objectType}/batch/read" : {
         "post" : {
           "tags" : [ "Batch" ],
           "summary" : "Read a batch of properties",
@@ -1221,7 +1221,7 @@
           } ]
         }
       },
-      "/crm/v3/properties/{objectType}/batch/create" : {
+      "/{objectType}/batch/create" : {
         "post" : {
           "tags" : [ "Batch" ],
           "summary" : "Create a batch of properties",
@@ -1323,7 +1323,7 @@
           } ]
         }
       },
-      "/crm/v3/properties/{objectType}" : {
+      "/{objectType}" : {
         "get" : {
           "tags" : [ "Core" ],
           "summary" : "Read all properties",
@@ -1661,7 +1661,7 @@
           } ]
         }
       },
-      "/crm/v3/properties/{objectType}/groups" : {
+      "/{objectType}/groups" : {
         "get" : {
           "tags" : [ "Groups" ],
           "summary" : "Read all property groups",
