@@ -149,9 +149,9 @@ Now, utilize the available connector operations. A sample usecase is shown below
 #### Create a Property Group
 
 ```ballerina
-PropertyGroupCreate propertyGroupInput = { "name": "propertygrouptest1",
+PropertyGroupCreate propertyGroupInput = { "name": "examplePropertyGroup",
                                            "displayOrder": -1,
-                                           "label": "My Property Group testyo"};
+                                           "label": "This is an example Property Group"};
 
 public function main() returns error? {
     PropertyGroup response = check hubspot->/[testObjectType]/groups.post(payload = propertyGroupInput);
