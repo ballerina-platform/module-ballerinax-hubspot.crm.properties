@@ -108,11 +108,56 @@ To use the `HubSpot Properties connector` in your Ballerina application, update 
 
 ### Step 1: Import the module
 
-Import the `hubspot.properties` module.
+Import the `hubspot.properties` module and `oauth2` module.
 
-```
+```ballerina
 import ballerinax/hubspot.properties as hsproperties;
+import ballerina/oauth2;
 ```
+### Step 2: Instantiate a new connector
+
+1. Create a `Config.toml` file and, configure the obtained credentials in the above steps as follows:
+
+   ```toml
+    clientId = <Client Id>
+    clientSecret = <Client Secret>
+    refreshToken = <Refresh Token>
+   ```
+
+2. Instantiate a `hs:ConnectionConfig` with the obtained credentials and initialize the connector with it.
+
+    ```ballerina 
+    configurable string clientId = ?;
+    configurable string clientSecret = ?;
+    configurable string refreshToken = ?;
+
+    final hsproperties:ConnectionConfig config = {
+        auth : {
+            clientId,
+            clientSecret,
+            refreshToken,
+            credentialBearer: oauth2:POST_BODY_BEARER
+        }
+    };
+
+    final hsproperties:Client hsproperties = check new (config, "https://api.hubapi.com");
+    ```
+### Step 3: Invoke the connector operation
+
+Now, utilize the available connector operations. A sample usecase is shown below.
+
+#### Create a Property Group
+
+```ballerina
+PropertyGroupCreate propertyGroupInput = { "name": "propertygrouptest1",
+                                           "displayOrder": -1,
+                                           "label": "My Property Group testyo"};
+
+public function main() returns error? {
+    PropertyGroup response = check hubspot->/[testObjectType]/groups.post(payload = propertyGroupInput);
+}
+```
+
 ## Examples
 
 The `Ballerina HubSpot CRM Properties Connector` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/module-ballerinax-hubspot.crm.properties/tree/main/examples/), covering the following use cases:
