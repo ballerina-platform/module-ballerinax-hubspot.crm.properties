@@ -3,7 +3,7 @@ import ballerina/oauth2;
 import ballerina/test;
 import ballerina/http;
 
-configurable boolean isLive = true;
+configurable boolean isLive = false;
 configurable string serviceUrl = isLive ? "https://api.hubapi.com/crm/v3/properties" : "http://localhost:9090" ;
 configurable string clientId = ?;
 configurable string clientSecret = ?;
@@ -20,8 +20,8 @@ final string testObjectType = "Contact";
 final string testPropertyName = "test_property111";
 final string testPropertyGroupName = "test_propertygroup001";
 final string testGroupName = "contactinformation";
-final string testBatchPropertyName1 = "test_Bproperty001";
-final string testBatchPropertyName2 = "test_Bproperty002";
+final string testBatchPropertyName1 = "test_bproperty001";
+final string testBatchPropertyName2 = "test_bproperty002";
 
 ConnectionConfig config = {auth: auth};
 
@@ -31,7 +31,7 @@ final Client hubspot = check new Client(config, serviceUrl);
 // Core
 
 @test:Config {
-    groups: ["live_tests", "mock_tests02"]
+    groups: ["live_tests", "mock_tests"]
 }
 isolated function testGetAllProperty() returns error? {
     
@@ -41,7 +41,7 @@ isolated function testGetAllProperty() returns error? {
 
 @test:Config {
   
-    groups: ["live_tests","mock_tests032"]
+    groups: ["live_tests","mock_tests"]
 }
 isolated function testPostProperty() returns error? {
     PropertyCreate propertyCreateInput = {
@@ -63,7 +63,7 @@ isolated function testPostProperty() returns error? {
 
 @test:Config {
     dependsOn: [testPostProperty],
-    groups: ["live_tests", "mock_tests02"]
+    groups: ["live_tests", "mock_tests"]
 }
 isolated function testgetAProperty() returns error?{ 
   Property response = check hubspot->/[testObjectType]/[testPropertyName].get();
@@ -72,7 +72,7 @@ isolated function testgetAProperty() returns error?{
 
 @test:Config {
   dependsOn: [testgetAProperty],
-  groups: ["live_tests","mock_tests033"]
+  groups: ["live_tests","mock_tests"]
 }
 isolated function testupdateAProperty() returns error?{ 
   Property response = check hubspot->/[testObjectType]/[testPropertyName].patch(payload = {
@@ -91,7 +91,7 @@ isolated function testupdateAProperty() returns error?{
 
 @test:Config {
     dependsOn: [testupdateAProperty],
-    groups: ["live_tests","mock_tests031"]
+    groups: ["live_tests","mock_tests"]
 }
 isolated function testArchiveProperty() returns error?{ 
   http:Response response = check hubspot->/[testObjectType]/[testPropertyName].delete();
@@ -103,7 +103,7 @@ isolated function testArchiveProperty() returns error?{
 // Group
 
 @test:Config {
-    groups: ["live_tests", "mock_tests02"]
+    groups: ["live_tests", "mock_tests"]
 }
 isolated function testGetGroupProperty() returns error?{ 
   PropertyGroup response = check hubspot->/[testObjectType]/groups/[testGroupName]();
@@ -120,7 +120,7 @@ isolated function testGetGroupProperty() returns error?{
 // }
 
 @test:Config {
-    groups: ["live_tests", "mock_tests02"]
+    groups: ["live_tests", "mock_tests"]
 }
 isolated function testCreatePropertyGroup() returns error?{ 
   PropertyGroupCreate propertyGroupInput = { "name": testPropertyGroupName,
@@ -132,7 +132,7 @@ isolated function testCreatePropertyGroup() returns error?{
 
 @test:Config {
     dependsOn: [testCreatePropertyGroup],
-    groups: ["live_tests", "mock_tests02"]
+    groups: ["live_tests", "mock_tests"]
 }
 isolated function testUpdatePropertyGroup() returns error?{ 
   PropertyGroupUpdate propertyGroupUpdateInput = { "displayOrder": -1,"label": "updated property group yo"};
@@ -143,7 +143,7 @@ isolated function testUpdatePropertyGroup() returns error?{
 
 @test:Config {
     dependsOn: [testUpdatePropertyGroup] ,
-    groups: ["live_tests", "mock_tests02"]
+    groups: ["live_tests", "mock_tests"]
 }
 isolated function testDeletePropertyGroup() returns error?{ 
   http:Response response = check hubspot->/[testObjectType]/groups/[testPropertyGroupName].delete();
@@ -157,7 +157,7 @@ isolated function testDeletePropertyGroup() returns error?{
 
 
 @test:Config {
-    groups: ["live_testsx", "mock_tests02"]
+    groups: ["live_tests", "mock_tests"]
 }
 isolated function testCreateBatchProperty() returns error?{ 
   BatchInputPropertyCreate batchInputPropertyCreate = {inputs: [{
@@ -187,7 +187,7 @@ isolated function testCreateBatchProperty() returns error?{
 
 @test:Config {
     dependsOn: [testCreateBatchProperty],
-    groups: ["live_testsx", "mock_tests02"]
+    groups: ["live_tests", "mock_tests"]
 }
 isolated function testgetPropertyBatch() returns error?{ 
   BatchReadInputPropertyName batchReadInputPropertyName = {archived: false, inputs: [{"name":testBatchPropertyName1},{"name":testBatchPropertyName2}]};
@@ -198,7 +198,7 @@ isolated function testgetPropertyBatch() returns error?{
 
 @test:Config {
     dependsOn: [testgetPropertyBatch],
-    groups: ["live_testsx","mock_tests041"]
+    groups: ["live_tests","mock_tests"]
 }
 isolated function testArchivePropertyBatch() returns error?{ 
   BatchInputPropertyName batchInputPropertyName =  {inputs: [{"name": testBatchPropertyName1},{"name": testBatchPropertyName2}]};
