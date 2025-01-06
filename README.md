@@ -8,6 +8,9 @@
 
 ## Overview
 
+[HubSpot ](https://www.hubspot.com/) is an AI-powered customer relationship management (CRM) platform. 
+
+The `ballerinax/hubspot.crm.properties` offers APIs to connect and interact with the [Properties](https://developers.hubspot.com/docs/reference/api/crm/properties)  endpoints , specifically based on the [API v3 documention](https://developers.hubspot.com/docs/reference/api/crm/properties)
 [//]: # (TODO: Add overview mentioning the purpose of the module, supported REST API versions, and other high-level details.)
 
 ## Setup guide
