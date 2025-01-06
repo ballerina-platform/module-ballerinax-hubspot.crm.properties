@@ -124,7 +124,7 @@ import ballerina/oauth2;
     refreshToken = <Refresh Token>
    ```
 
-2. Instantiate a `hs:ConnectionConfig` with the obtained credentials and initialize the connector with it.
+2. Instantiate a `hsproperties:ConnectionConfig` with the obtained credentials and initialize the connector with it.
 
     ```ballerina 
     configurable string clientId = ?;
@@ -140,7 +140,7 @@ import ballerina/oauth2;
         }
     };
 
-    final hsproperties:Client hsproperties = check new (config, "https://api.hubapi.com");
+    final hsproperties:Client hsproperties = check new (config, "https://api.hubapi.com/crm/v3/properties");
     ```
 ### Step 3: Invoke the connector operation
 
