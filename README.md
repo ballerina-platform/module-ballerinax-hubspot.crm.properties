@@ -142,7 +142,7 @@ import ballerina/oauth2;
         }
     };
 
-    final hsproperties:Client hsproperties = check new (config, "https://api.hubapi.com/crm/v3/properties");
+    final hsproperties:Client hsproperties = check new (config);
     ```
 
 2. Create a `Config.toml` file and, configure the obtained credentials in the above steps as follows:
@@ -152,7 +152,7 @@ import ballerina/oauth2;
     clientSecret = <Client Secret>
     refreshToken = <Refresh Token>
    ```
-   
+
 ### Step 3: Invoke the connector operation
 
 Now, utilize the available connector operations. A sample usecase is shown below.
