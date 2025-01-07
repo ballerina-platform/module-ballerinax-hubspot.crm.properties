@@ -7,8 +7,6 @@ The `ballerinax/hubspot.crm.properties` offers APIs to connect and interact with
 
 ## Setup guide
 
-[//]: # "TODO: Add detailed steps to obtain credentials and configure the module."
-
 To use the HubSpot Properties connector, you must have access to the HubSpot API through a HubSpot developer account and a HubSpot App under it. Therefore, you need to register for a developer account at HubSpot if you don't have one already.
 
 ### Step 1: Create/Login to a HubSpot Developer Account
@@ -106,7 +104,6 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
 
 ## Quickstart
 
-[//]: # (TODO: Add a quickstart guide to demonstrate a basic functionality of the module, including sample code snippets.)
 To use the `HubSpot Properties connector` in your Ballerina application, update the `.bal` file as follows:
 
 ### Step 1: Import the module
@@ -164,5 +161,3 @@ public function main() returns error? {
 ## Examples
 
 The `Ballerina HubSpot CRM Properties Connector` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/module-ballerinax-hubspot.crm.properties/tree/main/examples/), covering the following use cases:
-
-[//]: # (TODO: Add examples)

@@ -110,7 +110,6 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
 
 ## Quickstart
 
-[//]: # (TODO: Add a quickstart guide to demonstrate a basic functionality of the module, including sample code snippets.)
 To use the `HubSpot Properties connector` in your Ballerina application, update the `.bal` file as follows:
 
 ### Step 1: Import the module
@@ -168,8 +167,6 @@ public function main() returns error? {
 ## Examples
 
 The `Ballerina HubSpot CRM Properties Connector` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/module-ballerinax-hubspot.crm.properties/tree/main/examples/), covering the following use cases:
-
-[//]: # (TODO: Add examples)
 
 ## Build from the source
 
