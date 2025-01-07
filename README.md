@@ -37,7 +37,6 @@ Within app developer accounts, you can create developer test accounts to test ap
 3. In the dialogue box, give a name to your test account and click create.  
    ![Hubspot developer testacc3](https://github.com/ManadaHerath/module-ballerinax-hubspot.crm.properties/blob/6a36221acc4771c608bcd8951bedca75b3e21024/docs/resources/test_acc_3.png)
 
-
 ### Step 3: Create a HubSpot App under your account.
 
 1. In your developer account, navigate to the "Apps" section. Click on "Create App"  
