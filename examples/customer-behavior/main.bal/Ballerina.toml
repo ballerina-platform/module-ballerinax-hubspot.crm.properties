@@ -1,6 +1,6 @@
 [package]
 org = "wso2"
-name = "main.bal"
+name = "customer_behavior"
 version = "0.1.0"
 distribution = "2201.10.3"
 
