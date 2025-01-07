@@ -299,8 +299,8 @@ modules = [
 ]
 
 [[package]]
-org = "manada"
-name = "main.bal"
+org = "wso2"
+name = "customer_behavior"
 version = "0.1.0"
 dependencies = [
 	{org = "ballerina", name = "io"},
@@ -309,6 +309,6 @@ dependencies = [
 	{org = "ballerinax", name = "hubspot.crm.properties"}
 ]
 modules = [
-	{org = "manada", packageName = "main.bal", moduleName = "main.bal"}
+	{org = "wso2", packageName = "customer_behavior", moduleName = "customer_behavior"}
 ]
 

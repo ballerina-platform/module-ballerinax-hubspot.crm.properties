@@ -17,9 +17,14 @@ final hsproperties:ConnectionConfig config = {auth: auth};
 final hsproperties:Client hubspot = check new (config);
 
 public function main() returns error? {
+
+    final string groupName = "customer_behavior";
+    final string customPropertyName = "purchase_frequency_property";
+    final string dependantPropertyName = "preferred_channel_property";
+
     // Step 1: Create a property group for Customer Behavior
     hsproperties:PropertyGroupCreate behaviorGroupInput = {
-        name: "customer_behaviors_property_group",
+        name: groupName,
         displayOrder: 1,
         label: "Customer Behavior"
     };
@@ -28,9 +33,9 @@ public function main() returns error? {
 
     // Step 2: Create a custom property to track purchase frequency
     hsproperties:PropertyCreate purchaseFrequencyProperty = {
-        "name": "purchase_frequency_property",
-        "label": "Purchase Frequency",
-        "groupName": "customer_behavior",
+        "name": customPropertyName,
+        "label": customPropertyName,
+        "groupName": groupName,
         "type": "enumeration",
         "fieldType": "select",
         "description": "How often the customer makes purchases",
@@ -48,9 +53,9 @@ public function main() returns error? {
 
     // Step 3: Create a dependent property for preferred communication channel
     hsproperties:PropertyCreate preferredChannelProperty = {
-        "name": "preferred_channel_property",
-        "label": "Preferred Channel",
-        "groupName": "customer_behavior",
+        "name": dependantPropertyName,
+        "label": dependantPropertyName,
+        "groupName": groupName, // Corrected groupName
         "type": "enumeration",
         "fieldType": "radio",
         "description": "Customer's preferred communication channel",
@@ -75,7 +80,7 @@ public function main() returns error? {
             {"label": "Quarterly", "value": "quarterly", "displayOrder": 4, "hidden": false} // New option added
         ]
     };
-    hsproperties:Property updatedPurchaseFrequency = check hubspot->/Contact/purchase_frequency.patch(payload = purchaseFrequencyUpdate);
+    hsproperties:Property updatedPurchaseFrequency = check hubspot->/Contact/[customPropertyName].patch(payload = purchaseFrequencyUpdate);
     io:println("Updated property: ", updatedPurchaseFrequency);
 
     // Step 5: Log all created properties and groups
