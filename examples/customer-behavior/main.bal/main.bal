@@ -2,7 +2,6 @@ import ballerina/io;
 import ballerina/oauth2;
 import ballerinax/hubspot.crm.properties as hsproperties;
 
-configurable string serviceUrl = "https://api.hubapi.com/crm/v3/properties";
 configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string refreshToken = ?;
@@ -15,12 +14,12 @@ hsproperties:OAuth2RefreshTokenGrantConfig auth = {
 };
 
 final hsproperties:ConnectionConfig config = {auth: auth};
-final hsproperties:Client hubspot = check new (config, serviceUrl);
+final hsproperties:Client hubspot = check new (config);
 
 public function main() returns error? {
     // Step 1: Create a property group for Customer Behavior
     hsproperties:PropertyGroupCreate behaviorGroupInput = {
-        name: "customer_behavior01",
+        name: "customer_behaviors_property_group",
         displayOrder: 1,
         label: "Customer Behavior"
     };
@@ -29,7 +28,7 @@ public function main() returns error? {
 
     // Step 2: Create a custom property to track purchase frequency
     hsproperties:PropertyCreate purchaseFrequencyProperty = {
-        "name": "purchase_frequency01",
+        "name": "purchase_frequency_property",
         "label": "Purchase Frequency",
         "groupName": "customer_behavior",
         "type": "enumeration",
@@ -49,7 +48,7 @@ public function main() returns error? {
 
     // Step 3: Create a dependent property for preferred communication channel
     hsproperties:PropertyCreate preferredChannelProperty = {
-        "name": "preferred_channel01",
+        "name": "preferred_channel_property",
         "label": "Preferred Channel",
         "groupName": "customer_behavior",
         "type": "enumeration",

@@ -3,7 +3,6 @@ import ballerina/io;
 import ballerina/oauth2;
 import ballerinax/hubspot.crm.properties as hsproperties;
 
-configurable string serviceUrl = "https://api.hubapi.com/crm/v3/properties";
 configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string refreshToken = ?;
@@ -19,7 +18,7 @@ final string testObjectType = "Contact";
 
 hsproperties:ConnectionConfig config = {auth: auth};
 
-final hsproperties:Client hubspot = check new (config, serviceUrl);
+final hsproperties:Client hubspot = check new (config);
 
 public function main() returns error? {
     // Step 1: Create a property group for marketing preferences
