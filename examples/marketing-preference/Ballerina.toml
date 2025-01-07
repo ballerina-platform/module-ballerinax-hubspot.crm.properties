@@ -2,11 +2,6 @@
 org = "wso2"
 name = "marketing_preference"
 version = "0.1.0"
-distribution = "2201.10.3"
 
 [build-options]
 observabilityIncluded = true
-
-[dependencies]
-
-"ballerinax/hubspot.crm.properties" = { version = "1.0.0" }
