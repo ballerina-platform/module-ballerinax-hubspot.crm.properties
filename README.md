@@ -11,6 +11,7 @@
 [HubSpot ](https://www.hubspot.com/) is an AI-powered customer relationship management (CRM) platform. 
 
 The `ballerinax/hubspot.crm.properties` offers APIs to connect and interact with the [Properties](https://developers.hubspot.com/docs/reference/api/crm/properties)  endpoints , specifically based on the [API v3 documention](https://developers.hubspot.com/docs/reference/api/crm/properties)
+
 ## Setup guide
 
 To use the HubSpot Properties connector, you must have access to the HubSpot API through a HubSpot developer account and a HubSpot App under it. Therefore, you need to register for a developer account at HubSpot if you don't have one already.
@@ -59,7 +60,6 @@ Within app developer accounts, you can create developer test accounts to test ap
 
 - Navigate to the Auth section of your app. Make sure to save the provided Client ID and Client Secret.  
   ![Hubspot get credentials](https://github.com/ManadaHerath/module-ballerinax-hubspot.crm.properties/blob/6f8800ecab2b9e4173d466b42d17805457fbc6d2/docs/resources/get_credentials.png)
-
 
 ### Step 6: Setup Authentication Flow
 
