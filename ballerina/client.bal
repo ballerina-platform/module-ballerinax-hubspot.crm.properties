@@ -7,6 +7,7 @@ import ballerina/http;
 public isolated client class Client {
     final http:Client clientEp;
     final readonly & ApiKeysConfig? apiKeyConfig;
+
     # Gets invoked to initialize the `connector`.
     #
     # + config - The configurations to be used when initializing the `connector` 
@@ -109,21 +110,6 @@ public isolated client class Client {
         map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
         return self.clientEp->get(resourcePath, httpHeaders);
     }
-
-    // # Read all property groups
-    // #
-    // # + headers - Headers to be sent with the request 
-    // # + return - successful operation 
-    // resource isolated function get [string objectType]/groups(map<string|string[]> headers = {}) returns CollectionResponsePropertyGroupNoPaging|error {
-    //     string resourcePath = string `/${getEncodedUri(objectType)}/groups`;
-    //     map<anydata> headerValues = {...headers};
-    //     if self.apiKeyConfig is ApiKeysConfig {
-    //         headerValues["private-app"] = self.apiKeyConfig?.private\-app;
-    //         headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
-    //     }
-    //     map<string|string[]> httpHeaders = getMapForHeaders(headerValues);
-    //     return self.clientEp->get(resourcePath, httpHeaders);
-    // }
 
     # Read a property group
     #

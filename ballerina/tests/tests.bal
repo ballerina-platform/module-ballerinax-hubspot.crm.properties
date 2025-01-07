@@ -104,14 +104,6 @@ isolated function testGetGroupProperty() returns error? {
     test:assertTrue(response.length() > 0);
 }
 
-// @test:Config {
-//     groups: ["live_tests", "mock_tests"]
-// }
-// isolated function testGetAllGroupProperty() returns error?{ 
-//   CollectionResponsePropertyGroupNoPaging response = check hubspot->/[testObjectType]/groups;
-//   test:assertTrue(response.length()>0);
-// }
-
 @test:Config {
     groups: ["live_tests", "mock_tests"]
 }
