@@ -1,7 +1,7 @@
+import ballerina/http;
 import ballerina/io;
 import ballerina/oauth2;
 import ballerinax/hubspot.crm.properties as hsproperties;
-import ballerina/http;
 
 configurable string serviceUrl = "https://api.hubapi.com/crm/v3/properties";
 configurable string clientId = ?;
@@ -24,7 +24,7 @@ final hsproperties:Client hubspot = check new (config, serviceUrl);
 public function main() returns error? {
     // Step 1: Create a property group for marketing preferences
     hsproperties:PropertyGroup response = check hubspot->/[testObjectType]/groups/marketing_preferences();
-    if response.length()>0{
+    if response.length() > 0 {
         io:println(response.name);
         http:Response deleteResponse = check hubspot->/[testObjectType]/groups/marketing_preferences.delete();
         io:println(deleteResponse);

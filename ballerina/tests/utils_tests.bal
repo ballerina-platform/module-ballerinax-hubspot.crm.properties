@@ -4,7 +4,7 @@ import ballerina/test;
     groups: ["utils_tests"]
 }
 isolated function testGetDeepObjectStyleRequest() {
-    record {} anyRecord = { "key1": "value1", "key2": 2 };
+    record {} anyRecord = {"key1": "value1", "key2": 2};
     string result = getDeepObjectStyleRequest("parent", anyRecord);
     test:assertEquals(result, "parent[key1]=value1&parent[key2]=2", msg = "Expected serialized deep object style request");
 }
@@ -13,7 +13,7 @@ isolated function testGetDeepObjectStyleRequest() {
     groups: ["utils_tests"]
 }
 isolated function testGetFormStyleRequest() {
-    record {} anyRecord = { "key1": "value1", "key2": 2 };
+    record {} anyRecord = {"key1": "value1", "key2": 2};
     string result = getFormStyleRequest("parent", anyRecord, true);
     test:assertEquals(result, "key1=value1&key2=2", msg = "Expected serialized form style request with explode");
 
@@ -46,7 +46,7 @@ isolated function testGetSerializedArray() {
     groups: ["utils_tests"]
 }
 isolated function testGetSerializedRecordArray() {
-    record {}[] value = [{ "key1": "value1" }, { "key2": "value2" }];
+    record {}[] value = [{"key1": "value1"}, {"key2": "value2"}];
     string result = getSerializedRecordArray("parent", value, "form", true);
     test:assertEquals(result, "key1=value1,key2=value2", msg = "Expected serialized record array with form style and explode");
 
@@ -69,7 +69,7 @@ isolated function testGetEncodedUri() {
     groups: ["utils_tests"]
 }
 isolated function testGetPathForQueryParam() {
-    map<anydata> queryParam = { "key1": "value1", "key2": "value2" };
+    map<anydata> queryParam = {"key1": "value1", "key2": "value2"};
     string|error result = getPathForQueryParam(queryParam);
     test:assertEquals(result, "?key1=value1&key2=value2", msg = "Expected query path with query parameters");
 }
@@ -79,27 +79,27 @@ isolated function testGetPathForQueryParam() {
 }
 isolated function testGetMapForHeaders() {
     // Test with SimpleBasicType array
-    map<anydata> headerParam1 = { "header1": "value1", "header2": [1, 2] };
+    map<anydata> headerParam1 = {"header1": "value1", "header2": [1, 2]};
     map<string|string[]> result1 = getMapForHeaders(headerParam1);
-    test:assertEquals(result1, { "header1": "value1", "header2": "[1,2]" }, msg = "Expected header map with SimpleBasicType array");
+    test:assertEquals(result1, {"header1": "value1", "header2": "[1,2]"}, msg = "Expected header map with SimpleBasicType array");
 
     // Test with string value
-    map<anydata> headerParam2 = { "header1": "value1", "header2": "value2" };
+    map<anydata> headerParam2 = {"header1": "value1", "header2": "value2"};
     map<string|string[]> result2 = getMapForHeaders(headerParam2);
-    test:assertEquals(result2, { "header1": "value1", "header2": "value2" }, msg = "Expected header map with string value");
+    test:assertEquals(result2, {"header1": "value1", "header2": "value2"}, msg = "Expected header map with string value");
 
     // Test with int value
-    map<anydata> headerParam3 = { "header1": "value1", "header2": 123 };
+    map<anydata> headerParam3 = {"header1": "value1", "header2": 123};
     map<string|string[]> result3 = getMapForHeaders(headerParam3);
-    test:assertEquals(result3, { "header1": "value1", "header2": "123" }, msg = "Expected header map with int value");
+    test:assertEquals(result3, {"header1": "value1", "header2": "123"}, msg = "Expected header map with int value");
 
     // Test with boolean value
-    map<anydata> headerParam4 = { "header1": "value1", "header2": true };
+    map<anydata> headerParam4 = {"header1": "value1", "header2": true};
     map<string|string[]> result4 = getMapForHeaders(headerParam4);
-    test:assertEquals(result4, { "header1": "value1", "header2": "true" }, msg = "Expected header map with boolean value");
+    test:assertEquals(result4, {"header1": "value1", "header2": "true"}, msg = "Expected header map with boolean value");
 
     // Test with float value
-    map<anydata> headerParam5 = { "header1": "value1", "header2": 12.34 };
+    map<anydata> headerParam5 = {"header1": "value1", "header2": 12.34};
     map<string|string[]> result5 = getMapForHeaders(headerParam5);
-    test:assertEquals(result5, { "header1": "value1", "header2": "12.34" }, msg = "Expected header map with float value");
+    test:assertEquals(result5, {"header1": "value1", "header2": "12.34"}, msg = "Expected header map with float value");
 }
