@@ -37,9 +37,6 @@ final string testPropertyGroupName = "test_propertygroup001";
 final string testGroupName = "contactinformation";
 final string testBatchPropertyName1 = "test_bproperty001";
 final string testBatchPropertyName2 = "test_bproperty002";
-
-ConnectionConfig config = {auth: auth};
-
 final Client hubspot = check new Client(config, serviceUrl);
 
 // Core
