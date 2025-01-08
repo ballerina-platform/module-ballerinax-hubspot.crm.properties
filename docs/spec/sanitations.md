@@ -1,6 +1,6 @@
 _Author_:  @ManadaHerath \
 _Created_: 07.01.2025 \
-_Updated_: <!-- TODO: Add date --> \
+_Updated_: 08.01.2025 \
 _Edition_: Swan Lake
 
 # Sanitation for OpenAPI specification
@@ -33,6 +33,13 @@ These changes are done in order to improve the overall usability, and as workaro
 - **Updated**: Removed the `/{objectType}/groups` endpoint.
 
 - **Reason**: This endpoint caused an ambiguous method error with the existing endpoint for reading a property. Removing it resolves the conflict and ensures clarity in method handling. 
+
+4. Update the `date-time` into `datetime` to make it compatible with the ballerina type conversions
+- **Original**: `foramt:date-time`
+`
+- **Updated**: `foramt:datetime`
+
+- **Reason**: The date-time format is not compatible with the openAPI generation tool. Therefore, it is updated to datetime to make it compatible with the generation tool.
 
 ## OpenAPI cli command
 
