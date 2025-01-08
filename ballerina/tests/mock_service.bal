@@ -113,8 +113,8 @@ service on new http:Listener(9090) {
     return response;
     }
     
-    resource function post [string objectType](PropertyCreate payload) returns http:Response|error {
-    json responseBody = {
+    resource function post [string objectType](PropertyCreate payload) returns json {
+    return {
         "createdUserId": "string",
         "hidden": false,
         "modificationMetadata": {
@@ -153,12 +153,6 @@ service on new http:Listener(9090) {
         "externalOptions": true,
         "updatedAt": "2025-01-02T06:33:12.405Z"
         };
-
-
-    http:Response response = new;
-    response.statusCode = http:STATUS_CREATED;
-    response.setJsonPayload(responseBody);
-    return response;
     }
 
     resource function patch [string objectType]/[string propertyName](@http:Payload json payload) returns http:Response|error {
