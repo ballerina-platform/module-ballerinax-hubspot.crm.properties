@@ -29,14 +29,12 @@ hsproperties:OAuth2RefreshTokenGrantConfig auth = {
     credentialBearer: oauth2:POST_BODY_BEARER
 };
 
-final hsproperties:ConnectionConfig config = {auth: auth};
-final hsproperties:Client hubspot = check new (config);
+final string groupName = "customer_behavior";
+final string customPropertyName = "purchase_frequency_property";
+final string dependantPropertyName = "preferred_channel_property";
+final hsproperties:Client hubSpotProperties = check new ({auth});
 
 public function main() returns error? {
-
-    final string groupName = "customer_behavior";
-    final string customPropertyName = "purchase_frequency_property";
-    final string dependantPropertyName = "preferred_channel_property";
 
     // Step 1: Create a property group for Customer Behavior
     hsproperties:PropertyGroupCreate behaviorGroupInput = {
@@ -44,7 +42,7 @@ public function main() returns error? {
         displayOrder: 1,
         label: "Customer Behavior"
     };
-    hsproperties:PropertyGroup behaviorGroupResponse = check hubspot->/Contact/groups.post(payload = behaviorGroupInput);
+    hsproperties:PropertyGroup behaviorGroupResponse = check hubSpotProperties->/Contact/groups.post(payload = behaviorGroupInput);
     io:println("Property group created: ", behaviorGroupResponse);
 
     // Step 2: Create a custom property to track purchase frequency
@@ -64,7 +62,7 @@ public function main() returns error? {
         "formField": true,
         "displayOrder": 1
     };
-    hsproperties:Property purchaseFrequencyResponse = check hubspot->/Contact.post(payload = purchaseFrequencyProperty);
+    hsproperties:Property purchaseFrequencyResponse = check hubSpotProperties->/Contact.post(payload = purchaseFrequencyProperty);
     io:println("Property created: ", purchaseFrequencyResponse);
 
     // Step 3: Create a dependent property for preferred communication channel
@@ -84,7 +82,7 @@ public function main() returns error? {
         "formField": true,
         "displayOrder": 2
     };
-    hsproperties:Property preferredChannelResponse = check hubspot->/Contact.post(payload = preferredChannelProperty);
+    hsproperties:Property preferredChannelResponse = check hubSpotProperties->/Contact.post(payload = preferredChannelProperty);
     io:println("Property created: ", preferredChannelResponse);
 
     // Step 4: Dynamically update an existing property to include a new option
@@ -96,7 +94,7 @@ public function main() returns error? {
             {"label": "Quarterly", "value": "quarterly", "displayOrder": 4, "hidden": false} // New option added
         ]
     };
-    hsproperties:Property updatedPurchaseFrequency = check hubspot->/Contact/[customPropertyName].patch(payload = purchaseFrequencyUpdate);
+    hsproperties:Property updatedPurchaseFrequency = check hubSpotProperties->/Contact/[customPropertyName].patch(payload = purchaseFrequencyUpdate);
     io:println("Updated property: ", updatedPurchaseFrequency);
 
     // Step 5: Log all created properties and groups

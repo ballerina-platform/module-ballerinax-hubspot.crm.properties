@@ -34,10 +34,7 @@ final string groupName = "marketing_preference";
 final string emailPropertyName = "email_subscription";
 final string smsPropertyName = "sms_subscription";
 final string contactTimePropertyName = "preferred_contact_time";
-
-hsproperties:ConnectionConfig config = {auth: auth};
-
-final hsproperties:Client hubspot = check new (config);
+final hsproperties:Client hubSpotProperties = check new ({ auth });
 
 public function main() returns error? {
     // Step 1: Create a property group for marketing preferences
@@ -46,7 +43,7 @@ public function main() returns error? {
         displayOrder: 1,
         label: "Marketing Preferences"
     };
-    hsproperties:PropertyGroup groupResponse = check hubspot->/[testObjectType]/groups.post(payload = propertyGroupInput);
+    hsproperties:PropertyGroup groupResponse = check hubSpotProperties->/[testObjectType]/groups.post(payload = propertyGroupInput);
     io:println("Property group created: ", groupResponse);
 
     // Step 2: Create Email Subscription and SMS Subscription properties in batch
@@ -108,7 +105,7 @@ public function main() returns error? {
             }
         ]
     };
-    hsproperties:BatchResponseProperty batchResponse = check hubspot->/[testObjectType]/batch/create.post(payload = batchInputPropertyCreate);
+    hsproperties:BatchResponseProperty batchResponse = check hubSpotProperties->/[testObjectType]/batch/create.post(payload = batchInputPropertyCreate);
     io:println("Batch properties created: ", batchResponse);
 
     // Step 3: Create a Preferred Contact Time property
@@ -146,7 +143,7 @@ public function main() returns error? {
         "formField": true,
         "displayOrder": 3
     };
-    hsproperties:Property contactTimeResponse = check hubspot->/[testObjectType].post(payload = contactTimeProperty);
+    hsproperties:Property contactTimeResponse = check hubSpotProperties->/[testObjectType].post(payload = contactTimeProperty);
     io:println("Property created: ", contactTimeResponse);
 
     // Step 4: Update Email Subscription property to include a new "Paused" status
@@ -157,7 +154,7 @@ public function main() returns error? {
             {label: "Paused", value: "paused", displayOrder: 3, hidden: false}
         ]
     };
-    hsproperties:Property updatedProperty = check hubspot->/[testObjectType]/[emailPropertyName].patch(payload = emailUpdate);
+    hsproperties:Property updatedProperty = check hubSpotProperties->/[testObjectType]/[emailPropertyName].patch(payload = emailUpdate);
     io:println("Property updated: ", updatedProperty);
 
 }
