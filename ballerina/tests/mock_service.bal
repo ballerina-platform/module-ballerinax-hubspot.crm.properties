@@ -18,7 +18,7 @@ import ballerina/http;
 
 service on new http:Listener(9090) {
 
-    resource function get [string objectType](map<string|string[]> headers = {}) returns CollectionResponsePropertyNoPaging|http:Response {
+    resource function get [string objectType](map<string|string[]> headers = {}) returns CollectionResponsePropertyNoPaging {
         if objectType == "Contact" {
             return {
                 "results": [
