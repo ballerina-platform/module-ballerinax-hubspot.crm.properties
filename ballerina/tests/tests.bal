@@ -46,7 +46,7 @@ final Client hubSpotProperties = check new ({ auth }, serviceUrl);
 }
 isolated function testGetAllProperty() returns error? {
 
-    CollectionResponsePropertyNoPaging response = check hubspot->/[testObjectType].get();
+    CollectionResponsePropertyNoPaging response = check hubSpotProperties->/[testObjectType].get();
     test:assertTrue(response?.results.length() > 0, msg = "Expected non-empty results for successful property group deletion");
 }
 
@@ -66,7 +66,7 @@ isolated function testPostProperty() returns error? {
         "formField": true,
         "displayOrder": 1
     };
-    Property response = check hubspot->/[testObjectType].post(payload = propertyCreateInput);
+    Property response = check hubSpotProperties->/[testObjectType].post(payload = propertyCreateInput);
     test:assertTrue(response.length() > 0, msg = "Expected response came");
 
 }
@@ -76,7 +76,7 @@ isolated function testPostProperty() returns error? {
     groups: ["live_tests", "mock_tests"]
 }
 isolated function testgetAProperty() returns error? {
-    Property response = check hubspot->/[testObjectType]/[testPropertyName].get();
+    Property response = check hubSpotProperties->/[testObjectType]/[testPropertyName].get();
     test:assertTrue(response.length() > 0);
 }
 
@@ -85,7 +85,7 @@ isolated function testgetAProperty() returns error? {
     groups: ["live_tests", "mock_tests"]
 }
 isolated function testupdateAProperty() returns error? {
-    Property response = check hubspot->/[testObjectType]/[testPropertyName].patch(payload = {
+    Property response = check hubSpotProperties->/[testObjectType]/[testPropertyName].patch(payload = {
         "hidden": false,
         "displayOrder": 2,
         "description": "Updated Description",
@@ -103,7 +103,7 @@ isolated function testupdateAProperty() returns error? {
     groups: ["live_tests", "mock_tests"]
 }
 isolated function testArchiveProperty() returns error? {
-    http:Response response = check hubspot->/[testObjectType]/[testPropertyName].delete();
+    http:Response response = check hubSpotProperties->/[testObjectType]/[testPropertyName].delete();
     test:assertTrue(response.statusCode == 204);
 }
 
@@ -113,7 +113,7 @@ isolated function testArchiveProperty() returns error? {
     groups: ["live_tests", "mock_tests"]
 }
 isolated function testGetGroupProperty() returns error? {
-    PropertyGroup response = check hubspot->/[testObjectType]/groups/[testGroupName]();
+    PropertyGroup response = check hubSpotProperties->/[testObjectType]/groups/[testGroupName]();
     test:assertTrue(response.length() > 0);
 }
 
@@ -126,7 +126,7 @@ isolated function testCreatePropertyGroup() returns error? {
         "displayOrder": -1,
         "label": "My Property Group testyo"
     };
-    PropertyGroup response = check hubspot->/[testObjectType]/groups.post(payload = propertyGroupInput);
+    PropertyGroup response = check hubSpotProperties->/[testObjectType]/groups.post(payload = propertyGroupInput);
     test:assertTrue(response.length() > 0 && response.name == testPropertyGroupName);
 }
 
@@ -136,7 +136,7 @@ isolated function testCreatePropertyGroup() returns error? {
 }
 isolated function testUpdatePropertyGroup() returns error? {
     PropertyGroupUpdate propertyGroupUpdateInput = {"displayOrder": -1, "label": "updated property group yo"};
-    PropertyGroup response = check hubspot->/[testObjectType]/groups/[testPropertyGroupName].patch(
+    PropertyGroup response = check hubSpotProperties->/[testObjectType]/groups/[testPropertyGroupName].patch(
         payload = propertyGroupUpdateInput
     );
     test:assertTrue(response.length() > 0);
@@ -147,7 +147,7 @@ isolated function testUpdatePropertyGroup() returns error? {
     groups: ["live_tests", "mock_tests"]
 }
 isolated function testDeletePropertyGroup() returns error? {
-    http:Response response = check hubspot->/[testObjectType]/groups/[testPropertyGroupName].delete();
+    http:Response response = check hubSpotProperties->/[testObjectType]/groups/[testPropertyGroupName].delete();
     test:assertTrue(response.statusCode == 204);
 }
 
@@ -183,7 +183,7 @@ isolated function testCreateBatchProperty() returns error? {
             }
         ]
     };
-    BatchResponseProperty response = check hubspot->/[testObjectType]/batch/create.post(payload = batchInputPropertyCreate);
+    BatchResponseProperty response = check hubSpotProperties->/[testObjectType]/batch/create.post(payload = batchInputPropertyCreate);
     test:assertTrue(response.results.length() > 0);
 }
 
@@ -193,7 +193,7 @@ isolated function testCreateBatchProperty() returns error? {
 }
 isolated function testgetPropertyBatch() returns error? {
     BatchReadInputPropertyName batchReadInputPropertyName = {archived: false, inputs: [{"name": testBatchPropertyName1}, {"name": testBatchPropertyName2}]};
-    BatchResponseProperty response = check hubspot->/[testObjectType]/batch/read.post(payload = batchReadInputPropertyName);
+    BatchResponseProperty response = check hubSpotProperties->/[testObjectType]/batch/read.post(payload = batchReadInputPropertyName);
     test:assertTrue(response.results.length() > 0);
 }
 
@@ -203,6 +203,6 @@ isolated function testgetPropertyBatch() returns error? {
 }
 isolated function testArchivePropertyBatch() returns error? {
     BatchInputPropertyName batchInputPropertyName = {inputs: [{"name": testBatchPropertyName1}, {"name": testBatchPropertyName2}]};
-    http:Response response = check hubspot->/[testObjectType]/batch/archive.post(payload = batchInputPropertyName);
+    http:Response response = check hubSpotProperties->/[testObjectType]/batch/archive.post(payload = batchInputPropertyName);
     test:assertTrue(response.statusCode == 204);
 }
