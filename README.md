@@ -199,6 +199,12 @@ public function main() returns error? {
 }
 ```
 
+#### Run the Ballerina application
+
+```bash
+bal run
+```
+
 ## Examples
 
 The `Ballerina HubSpot CRM Properties Connector` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/module-ballerinax-hubspot.crm.properties/tree/main/examples/), covering the following use cases:
