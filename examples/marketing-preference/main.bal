@@ -49,69 +49,69 @@ public function main() returns error? {
     hsproperties:PropertyGroup groupResponse = check hubspot->/[testObjectType]/groups.post(payload = propertyGroupInput);
     io:println("Property group created: ", groupResponse);
 
-    // Step 2: Create an Email Subscription property
-    hsproperties:PropertyCreate emailSubscriptionProperty = {
-        "name": emailPropertyName,
-        "label": "Email Subscription",
-        "groupName": groupName,
-        "type": "enumeration",
-        "fieldType": "checkbox",
-        "description": "Track email subscription status",
-        options: [
+    // Step 2: Create Email Subscription and SMS Subscription properties in batch
+    hsproperties:BatchInputPropertyCreate batchInputPropertyCreate = {
+        inputs: [
             {
-                label: "Subscribed",
-                value: "subscribed",
-                hidden: false,
-                description: "Subscribed users",
-                displayOrder: 1
-            },
-            {
-                label: "Unsubscribed",
-                value: "unsubscribed",
-                hidden: false,
-                description: "Unsubscribed users",
-                displayOrder: 2
-            }
-        ],
-        "hidden": false,
-        "formField": true,
-        "displayOrder": 1
-    };
-    hsproperties:Property emailResponse = check hubspot->/[testObjectType].post(payload = emailSubscriptionProperty);
-    io:println("Property created: ", emailResponse);
-
-    // Step 3: Create an SMS Subscription property
-    hsproperties:PropertyCreate smsSubscriptionProperty = {
-        "name": smsPropertyName,
-        "label": "SMS Subscription",
-        "groupName": groupName,
-        "type": "enumeration",
-        "fieldType": "checkbox",
-        "description": "Track SMS subscription status",
-        "options": [
-            {
-                "label": "Subscribed",
-                "value": "subscribed",
+                "name": emailPropertyName,
+                "label": "Email Subscription",
+                "groupName": groupName,
+                "type": "enumeration",
+                "fieldType": "checkbox",
+                "description": "Track email subscription status",
+                "options": [
+                    {
+                        "label": "Subscribed",
+                        "value": "subscribed",
+                        "hidden": false,
+                        "description": "Subscribed users",
+                        "displayOrder": 1
+                    },
+                    {
+                        "label": "Unsubscribed",
+                        "value": "unsubscribed",
+                        "hidden": false,
+                        "description": "Unsubscribed users",
+                        "displayOrder": 2
+                    }
+                ],
                 "hidden": false,
-                "description": "Subscribed users",
+                "formField": true,
                 "displayOrder": 1
             },
             {
-                "label": "Unsubscribed",
-                "value": "unsubscribed",
+                "name": smsPropertyName,
+                "label": "SMS Subscription",
+                "groupName": groupName,
+                "type": "enumeration",
+                "fieldType": "checkbox",
+                "description": "Track SMS subscription status",
+                "options": [
+                    {
+                        "label": "Subscribed",
+                        "value": "subscribed",
+                        "hidden": false,
+                        "description": "Subscribed users",
+                        "displayOrder": 1
+                    },
+                    {
+                        "label": "Unsubscribed",
+                        "value": "unsubscribed",
+                        "hidden": false,
+                        "description": "Unsubscribed users",
+                        "displayOrder": 2
+                    }
+                ],
                 "hidden": false,
-                "description": "Unsubscribed users",
+                "formField": true,
                 "displayOrder": 2
             }
-        ],
-        "hidden": false,
-        "formField": true,
-        "displayOrder": 2
+        ]
     };
-    hsproperties:Property smsResponse = check hubspot->/[testObjectType].post(payload = smsSubscriptionProperty);
-    io:println("Property created: ", smsResponse);
+    hsproperties:BatchResponseProperty batchResponse = check hubspot->/[testObjectType]/batch/create.post(payload = batchInputPropertyCreate);
+    io:println("Batch properties created: ", batchResponse);
 
-    // Step 4: Create a Preferred Contact Time property
+    // Step 3: Create a Preferred Contact Time property
     hsproperties:PropertyCreate contactTimeProperty = {
         "name": contactTimePropertyName,
         "label": "Preferred Contact Time",
@@ -149,7 +149,7 @@ public function main() returns error? {
     hsproperties:Property contactTimeResponse = check hubspot->/[testObjectType].post(payload = contactTimeProperty);
     io:println("Property created: ", contactTimeResponse);
 
-    // Step 5: Update Email Subscription property to include a new "Paused" status
+    // Step 4: Update Email Subscription property to include a new "Paused" status
     hsproperties:PropertyUpdate emailUpdate = {
         options: [
             {label: "Subscribed", value: "subscribed", displayOrder: 1, hidden: false},
@@ -159,4 +159,5 @@ public function main() returns error? {
     };
     hsproperties:Property updatedProperty = check hubspot->/[testObjectType]/[emailPropertyName].patch(payload = emailUpdate);
     io:println("Property updated: ", updatedProperty);
+
 }
