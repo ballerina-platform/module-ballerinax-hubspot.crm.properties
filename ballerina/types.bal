@@ -41,10 +41,6 @@ public type PropertyGroup record {
     string label;
 };
 
-public type CollectionResponsePropertyGroupNoPaging record {
-    PropertyGroup[] results;
-};
-
 public type PropertyCreate record {
     # If true, the property won't be visible and can't be used in HubSpot.
     boolean hidden?;

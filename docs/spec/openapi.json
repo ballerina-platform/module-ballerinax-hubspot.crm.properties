@@ -1819,15 +1819,15 @@
           "properties" : {
             "completedAt" : {
               "type" : "string",
-              "format" : "date-time"
+              "format" : "datetime"
             },
             "requestedAt" : {
               "type" : "string",
-              "format" : "date-time"
+              "format" : "datetime"
             },
             "startedAt" : {
               "type" : "string",
-              "format" : "date-time"
+              "format" : "datetime"
             },
             "links" : {
               "type" : "object",
@@ -2336,7 +2336,7 @@
           "properties" : {
             "completedAt" : {
               "type" : "string",
-              "format" : "date-time"
+              "format" : "datetime"
             },
             "numErrors" : {
               "type" : "integer",
@@ -2344,11 +2344,11 @@
             },
             "requestedAt" : {
               "type" : "string",
-              "format" : "date-time"
+              "format" : "datetime"
             },
             "startedAt" : {
               "type" : "string",
-              "format" : "date-time"
+              "format" : "datetime"
             },
             "links" : {
               "type" : "object",
@@ -2485,12 +2485,12 @@
             "createdAt" : {
               "type" : "string",
               "description" : "",
-              "format" : "date-time"
+              "format" : "datetime"
             },
             "archivedAt" : {
               "type" : "string",
               "description" : "When the property was archived.",
-              "format" : "date-time"
+              "format" : "datetime"
             },
             "archived" : {
               "type" : "boolean",
@@ -2559,7 +2559,7 @@
             "updatedAt" : {
               "type" : "string",
               "description" : "",
-              "format" : "date-time"
+              "format" : "datetime"
             }
           },
           "example" : {
