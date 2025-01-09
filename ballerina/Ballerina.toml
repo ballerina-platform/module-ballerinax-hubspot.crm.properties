@@ -1,5 +1,4 @@
 [package]
-distribution = "2201.10.0"
 org = "ballerinax"
 name = "hubspot.crm.properties"
 version = "1.0.0"
