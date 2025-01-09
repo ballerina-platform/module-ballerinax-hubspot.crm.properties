@@ -30,6 +30,7 @@ OAuth2RefreshTokenGrantConfig auth = {
     refreshToken: refreshToken,
     credentialBearer: oauth2:POST_BODY_BEARER
 };
+final Client hubSpotProperties = check new ({auth}, serviceUrl);
 
 final string testObjectType = "Contact";
 final string testPropertyName = "test_property111";
@@ -37,7 +38,6 @@ final string testPropertyGroupName = "test_propertygroup001";
 final string testGroupName = "contactinformation";
 final string testBatchPropertyName1 = "test_bproperty001";
 final string testBatchPropertyName2 = "test_bproperty002";
-final Client hubSpotProperties = check new ({auth}, serviceUrl);
 
 // Core
 
