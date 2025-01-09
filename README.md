@@ -144,7 +144,7 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
 
 ## Quickstart
 
-To use the `HubSpot Properties connector` in your Ballerina application, update the `.bal` file as follows:
+To use the `HubSpot CRM Properties connector` in your Ballerina application, update the `.bal` file as follows:
 
 ### Step 1: Import the module
 
