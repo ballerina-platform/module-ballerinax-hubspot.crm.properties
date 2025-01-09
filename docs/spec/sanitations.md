@@ -19,7 +19,7 @@ These changes are done in order to improve the overall usability, and as workaro
 - **Reason**: This change of adding the common prefix `crm/v3/properties` to the base url makes it easier to access endpoints using the client.
 
 2. Update the API Paths
-- **Original**: Paths included common prefix above in each endpoint. (eg: ```/marketing/v3/pipelines```)
+- **Original**: Paths included common prefix above in each endpoint. (eg: ```/crm/v3/properties```)
 
 - **Updated**: Common prefix is now removed from the endpoints as it is included in the base URL.
   - **Original**: ```/crm/v3/properties```
