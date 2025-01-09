@@ -127,7 +127,7 @@ public type Property record {
     boolean hubspotDefined?;
     # Whether or not the property can be used in a HubSpot form.
     boolean formField?;
-    # 
+    #
     string createdAt?;
     # When the property was archived.
     string archivedAt?;
@@ -153,7 +153,7 @@ public type Property record {
     boolean calculated?;
     # For default properties, true indicates that the options are stored externally to the property settings.
     boolean externalOptions?;
-    # 
+    #
     string updatedAt?;
 };
 

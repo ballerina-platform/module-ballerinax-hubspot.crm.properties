@@ -34,7 +34,7 @@ final string groupName = "marketing_preference";
 final string emailPropertyName = "email_subscription";
 final string smsPropertyName = "sms_subscription";
 final string contactTimePropertyName = "preferred_contact_time";
-final hsproperties:Client hubSpotProperties = check new ({ auth });
+final hsproperties:Client hubSpotProperties = check new ({auth});
 
 public function main() returns error? {
     // Step 1: Create a property group for marketing preferences
