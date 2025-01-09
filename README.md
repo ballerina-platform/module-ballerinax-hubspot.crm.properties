@@ -194,7 +194,7 @@ public function main() returns error? {
                                            "displayOrder": -1,
                                            "label": "This is an example Property Group"};
                                            
-   hsproperties:PropertyGroup response = check hubspot->/[testObjectType]/groups.post(payload = propertyGroupInput);
+   hsproperties:PropertyGroup response = check hubSpotProperties->/[testObjectType]/groups.post(payload = propertyGroupInput);
 }
 ```
 
