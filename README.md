@@ -163,7 +163,7 @@ import ballerina/oauth2;
     configurable string clientSecret = ?;
     configurable string refreshToken = ?;
 
-    final hsproperties:ConnectionConfig config = {
+    hsproperties:ConnectionConfig config = {
         auth : {
             clientId,
             clientSecret,
@@ -171,8 +171,7 @@ import ballerina/oauth2;
             credentialBearer: oauth2:POST_BODY_BEARER
         }
     };
-
-    final hsproperties:Client hsproperties = check new (config);
+    final hsproperties:Client hubSpotProperties = check new (config);
     ```
 
 2. Create a `Config.toml` file and, configure the obtained credentials in the above steps as follows:
