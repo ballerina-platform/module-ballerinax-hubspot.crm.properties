@@ -148,10 +148,10 @@ To use the `HubSpot CRM Properties connector` in your Ballerina application, upd
 
 ### Step 1: Import the module
 
-Import the `hubspot.properties` module and `oauth2` module.
+Import the `hubspot.crm.properties` module and `oauth2` module.
 
 ```ballerina
-import ballerinax/hubspot.properties as hsproperties;
+import ballerinax/hubspot.crm.properties as hsproperties;
 import ballerina/oauth2;
 ```
 ### Step 2: Instantiate a new connector
