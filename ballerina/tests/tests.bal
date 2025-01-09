@@ -17,9 +17,10 @@
 import ballerina/http;
 import ballerina/oauth2;
 import ballerina/test;
+import ballerina/os;
 
 boolean isLiveServer = os:getEnv("IS_LIVE_SERVER") == "true";
-configurable string serviceUrl = isLive ? "https://api.hubapi.com/crm/v3/properties" : "http://localhost:9090";
+configurable string serviceUrl = isLiveServer ? "https://api.hubapi.com/crm/v3/properties" : "http://localhost:9090";
 configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string refreshToken = ?;
