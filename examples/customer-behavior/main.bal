@@ -28,11 +28,11 @@ hsproperties:OAuth2RefreshTokenGrantConfig auth = {
     refreshToken: refreshToken,
     credentialBearer: oauth2:POST_BODY_BEARER
 };
+final hsproperties:Client hubSpotProperties = check new ({ auth });
 
 final string groupName = "customer_behavior";
 final string customPropertyName = "purchase_frequency_property";
 final string dependantPropertyName = "preferred_channel_property";
-final hsproperties:Client hubSpotProperties = check new ({auth});
 
 public function main() returns error? {
 
