@@ -16,22 +16,34 @@
 
 import ballerina/http;
 import ballerina/oauth2;
-import ballerina/test;
 import ballerina/os;
+import ballerina/test;
 
-boolean isLiveServer = os:getEnv("IS_LIVE_SERVER") == "true";
-configurable string serviceUrl = isLiveServer ? "https://api.hubapi.com/crm/v3/properties" : "http://localhost:9090";
-configurable string clientId = ?;
-configurable string clientSecret = ?;
-configurable string refreshToken = ?;
+final boolean isLiveServer = os:getEnv("IS_LIVE_SERVER") == "true";
+final string serviceUrl = isLiveServer ? "https://api.hubapi.com/crm/v3/properties" : "http://localhost:9090";
 
-OAuth2RefreshTokenGrantConfig auth = {
-    clientId: clientId,
-    clientSecret: clientSecret,
-    refreshToken: refreshToken,
-    credentialBearer: oauth2:POST_BODY_BEARER
-};
-final Client hubSpotProperties = check new ({auth}, serviceUrl);
+final string clientId = os:getEnv("HUBSPOT_CLIENT_ID");
+final string clientSecret = os:getEnv("HUBSPOT_CLIENT_SECRET");
+final string refreshToken = os:getEnv("HUBSPOT_REFRESH_TOKEN");
+
+final Client hubSpotProperties = check initClient();
+
+isolated function initClient() returns Client|error {
+    if isLiveServer {
+        OAuth2RefreshTokenGrantConfig auth = {
+            clientId: clientId,
+            clientSecret: clientSecret,
+            refreshToken: refreshToken,
+            credentialBearer: oauth2:POST_BODY_BEARER
+        };
+        return check new ({auth}, serviceUrl);
+    }
+    return check new ({
+        auth: {
+            token: "test-token"
+        }
+    }, serviceUrl);
+}
 
 final string testObjectType = "Contact";
 final string testPropertyName = "test_property111";
