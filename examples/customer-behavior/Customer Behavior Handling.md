@@ -1,9 +1,6 @@
-# Examples
+# [Customer Behavior Handling](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.properties/tree/main/examples/customer-behavior)
 
-The `ballerinax/hubspot.crm.properties` connector provides practical examples illustrating usage in various scenarios.
-
-1. [Customer Behavior Handling](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.properties/tree/main/examples/customer-behavior)
-2. [Marketing Preference Management](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.properties/tree/main/examples/marketing-preference)
+This example demonstrates how to use the HubSpot CRM Properties API to create and manage custom properties related to customer behavior. It covers the creation of property groups and specific properties like "purchase frequency" and "preferred communication channel." Additionally, it shows how to update existing properties dynamically to track changes in customer behavior, making it easier to segment and analyze customer preferences for targeted marketing efforts.
 
 ## Prerequisites
 

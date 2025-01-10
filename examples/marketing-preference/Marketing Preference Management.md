@@ -1,9 +1,6 @@
-# Examples
+# [Marketing Preference Management](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.properties/tree/8dfd490047721c5e72f0a8d995636860769e3c82/examples/marketing-preference)
 
-The `ballerinax/hubspot.crm.properties` connector provides practical examples illustrating usage in various scenarios.
-
-1. [Customer Behavior Handling](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.properties/tree/main/examples/customer-behavior)
-2. [Marketing Preference Management](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.properties/tree/main/examples/marketing-preference)
+This example shows how to use the HubSpot CRM Properties API to batch-create properties related to marketing preferences for contacts. It covers creating a property group and adding multiple subscription-related properties like "email subscription," "SMS subscription," and "preferred contact time" in one batch request. The program also demonstrates how to update properties, ensuring that marketing preferences are organized efficiently for better customer engagement and communication strategies.
 
 ## Prerequisites
 
