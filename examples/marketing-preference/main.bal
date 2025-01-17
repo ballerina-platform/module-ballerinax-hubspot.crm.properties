@@ -30,29 +30,29 @@ hsproperties:OAuth2RefreshTokenGrantConfig auth = {
 };
 final hsproperties:Client hubSpotProperties = check new ({ auth });
 
-string testObjectType = "Contact";
-string groupName = "marketing_preference";
-string emailPropertyName = "email_subscription";
-string smsPropertyName = "sms_subscription";
-string contactTimePropertyName = "preferred_contact_time";
+const TEST_OBJECT_TYPE = "Contact";
+const GROUP_NAME = "marketing_preference";
+const EMAIL_PROPERTY_NAME = "email_subscription";
+const SMS_PROPERTY_NAME = "sms_subscription";
+const CONTACT_TIME_PROPERTY_NAME = "preferred_contact_time";
 
 public function main() returns error? {
     // Step 1: Create a property group for marketing preferences
     hsproperties:PropertyGroupCreate propertyGroupInput = {
-        name: groupName,
+        name: GROUP_NAME,
         displayOrder: 1,
         label: "Marketing Preferences"
     };
-    hsproperties:PropertyGroup groupResponse = check hubSpotProperties->/[testObjectType]/groups.post(payload = propertyGroupInput);
+    hsproperties:PropertyGroup groupResponse = check hubSpotProperties->/[TEST_OBJECT_TYPE]/groups.post(payload = propertyGroupInput);
     io:println("Property group created: ", groupResponse);
 
     // Step 2: Create Email Subscription and SMS Subscription properties in batch
     hsproperties:BatchInputPropertyCreate batchInputPropertyCreate = {
         inputs: [
             {
-                "name": emailPropertyName,
+                "name": EMAIL_PROPERTY_NAME,
                 "label": "Email Subscription",
-                "groupName": groupName,
+                "groupName": GROUP_NAME,
                 "type": "enumeration",
                 "fieldType": "checkbox",
                 "description": "Track email subscription status",
@@ -77,9 +77,9 @@ public function main() returns error? {
                 "displayOrder": 1
             },
             {
-                "name": smsPropertyName,
+                "name": SMS_PROPERTY_NAME,
                 "label": "SMS Subscription",
-                "groupName": groupName,
+                "groupName": GROUP_NAME,
                 "type": "enumeration",
                 "fieldType": "checkbox",
                 "description": "Track SMS subscription status",
@@ -105,14 +105,14 @@ public function main() returns error? {
             }
         ]
     };
-    hsproperties:BatchResponseProperty batchResponse = check hubSpotProperties->/[testObjectType]/batch/create.post(payload = batchInputPropertyCreate);
+    hsproperties:BatchResponseProperty batchResponse = check hubSpotProperties->/[TEST_OBJECT_TYPE]/batch/create.post(payload = batchInputPropertyCreate);
     io:println("Batch properties created: ", batchResponse);
 
     // Step 3: Create a Preferred Contact Time property
     hsproperties:PropertyCreate contactTimeProperty = {
-        "name": contactTimePropertyName,
+        "name": CONTACT_TIME_PROPERTY_NAME,
         "label": "Preferred Contact Time",
-        "groupName": groupName,
+        "groupName": GROUP_NAME,
         "type": "enumeration",
         "fieldType": "radio",
         "description": "Track customer's preferred contact time",
@@ -143,7 +143,7 @@ public function main() returns error? {
         "formField": true,
         "displayOrder": 3
     };
-    hsproperties:Property contactTimeResponse = check hubSpotProperties->/[testObjectType].post(payload = contactTimeProperty);
+    hsproperties:Property contactTimeResponse = check hubSpotProperties->/[TEST_OBJECT_TYPE].post(payload = contactTimeProperty);
     io:println("Property created: ", contactTimeResponse);
 
     // Step 4: Update Email Subscription property to include a new "Paused" status
@@ -154,7 +154,7 @@ public function main() returns error? {
             {label: "Paused", value: "paused", displayOrder: 3, hidden: false}
         ]
     };
-    hsproperties:Property updatedProperty = check hubSpotProperties->/[testObjectType]/[emailPropertyName].patch(payload = emailUpdate);
+    hsproperties:Property updatedProperty = check hubSpotProperties->/[TEST_OBJECT_TYPE]/[EMAIL_PROPERTY_NAME].patch(payload = emailUpdate);
     io:println("Property updated: ", updatedProperty);
 
 }
