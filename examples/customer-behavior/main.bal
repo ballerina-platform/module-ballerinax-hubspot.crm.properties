@@ -30,9 +30,9 @@ hsproperties:OAuth2RefreshTokenGrantConfig auth = {
 };
 final hsproperties:Client hubSpotProperties = check new ({ auth });
 
-final string groupName = "customer_behavior";
-final string customPropertyName = "purchase_frequency_property";
-final string dependantPropertyName = "preferred_channel_property";
+string groupName = "customer_behavior";
+string customPropertyName = "purchase_frequency_property";
+string dependantPropertyName = "preferred_channel_property";
 
 public function main() returns error? {
 

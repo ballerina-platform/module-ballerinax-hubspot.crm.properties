@@ -30,11 +30,11 @@ hsproperties:OAuth2RefreshTokenGrantConfig auth = {
 };
 final hsproperties:Client hubSpotProperties = check new ({ auth });
 
-final string testObjectType = "Contact";
-final string groupName = "marketing_preference";
-final string emailPropertyName = "email_subscription";
-final string smsPropertyName = "sms_subscription";
-final string contactTimePropertyName = "preferred_contact_time";
+string testObjectType = "Contact";
+string groupName = "marketing_preference";
+string emailPropertyName = "email_subscription";
+string smsPropertyName = "sms_subscription";
+string contactTimePropertyName = "preferred_contact_time";
 
 public function main() returns error? {
     // Step 1: Create a property group for marketing preferences
