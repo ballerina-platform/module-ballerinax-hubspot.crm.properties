@@ -1,6 +1,6 @@
 ## Overview
 
-[HubSpot ](https://www.hubspot.com/) is an AI-powered customer relationship management (CRM) platform. 
+[HubSpot ](https://www.hubspot.com/) is an AI-powered customer relationship management (CRM) platform.
 
 The `ballerinax/module-ballerinax-hubspot.crm.properties` connector offers APIs to connect and interact with the [Hubspot Properties API](https://developers.hubspot.com/docs/guides/api/crm/properties) endpoints, specifically based on the [HubSpot REST API](https://developers.hubspot.com/docs/reference/api/overview).
 
@@ -20,36 +20,36 @@ Within app developer accounts, you can create [developer test accounts](https://
 
 **Note: These accounts are only for development and testing purposes. In production you should not use Developer Test Accounts.**
 
-1. Go to Test Account section from the left sidebar.  
+1. Go to Test Account section from the left sidebar.
    ![Hubspot developer portal](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.properties/main/docs/resources/test_acc_1.png)
 
-2. Click Create developer test account.  
+2. Click Create developer test account.
    ![Hubspot developer testacc](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.properties/main/docs/resources/test_acc_2.png)
 
-3. In the dialogue box, give a name to your test account and click create.  
+3. In the dialogue box, give a name to your test account and click create.
    ![Hubspot developer testacc3](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.properties/main/docs/resources/test_acc_3.png)
 
-### Step 3: Create a HubSpot App under your account.
+### Step 3: Create a HubSpot App under your account
 
-1. In your developer account, navigate to the "Apps" section. Click on "Create App"  
+1. In your developer account, navigate to the "Apps" section. Click on "Create App"
    ![Hubspot app creation 1](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.properties/main/docs/resources/create_app_1.png)
 
 2. Provide the necessary details, including the app name and description.
 
 ### Step 4: Configure the Authentication Flow
 
-1. Move to the Auth Tab.  
+1. Move to the Auth Tab.
    ![Hubspot app creation 2](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.properties/main/docs/resources/create_app_2.png)
 
-2. In the Scopes section, add necessary scopes for your app using the "Add new scope" button.  
+2. In the Scopes section, add necessary scopes for your app using the "Add new scope" button.
    ![Hubspot set scope](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.properties/main/docs/resources/set_scope.png)
 
-3. Add your Redirect URI in the relevant section. You can also use localhost addresses for local development purposes. Click Create App.  
+3. Add your Redirect URI in the relevant section. You can also use localhost addresses for local development purposes. Click Create App.
    ![Hubspot create app final](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.properties/main/docs/resources/create_app_final.png)
 
 ### Step 5: Get your Client ID and Client Secret
 
-- Navigate to the Auth section of your app. Make sure to save the provided Client ID and Client Secret.  
+- Navigate to the Auth section of your app. Make sure to save the provided Client ID and Client Secret.
   ![Hubspot get credentials](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.properties/main/docs/resources/get_credentials.png)
 
 ### Step 6: Setup Authentication Flow
@@ -62,16 +62,11 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
    https://app.hubspot.com/oauth/authorize?client_id=<YOUR_CLIENT_ID>&scope=<YOUR_SCOPES>&redirect_uri=<YOUR_REDIRECT_URI>
    ```
 
-   Replace the `<YOUR_CLIENT_ID>`, `<YOUR_REDIRECT_URI>` and `<YOUR_SCOPES>` with your specific value.
+   Replace the `<YOUR_CLIENT_ID>`, `<YOUR_REDIRECT_URI>`, and `<YOUR_SCOPES>` with your specific value.
 
-2. Paste it in the browser and select your developer test account to intall the app when prompted.
+2. Paste it in the browser and select your developer test account to install the app when prompted.
 3. A code will be displayed in the browser. Copy the code.
-
-   ```
-   Received code: na1-129d-860c-xxxx-xxxx-xxxxxxxxxxxx
-   ```
-
-4. Run the following curl command. Replace the `<YOUR_CLIENT_ID>`, `<YOUR_REDIRECT_URI`> and `<YOUR_CLIENT_SECRET>` with your specific value. Use the code you received in the above step 3 as the `<CODE>`.
+4. Run the following curl command. Replace the `<YOUR_CLIENT_ID>`, `<YOUR_REDIRECT_URI>`, and `<YOUR_CLIENT_SECRET>` with your specific value. Use the code you received in the above step 3 as the `<CODE>`.
 
    - Linux/macOS
 
@@ -116,11 +111,12 @@ Import the `hubspot.properties` module and `oauth2` module.
 import ballerinax/hubspot.properties as hsproperties;
 import ballerina/oauth2;
 ```
+
 ### Step 2: Instantiate a new connector
 
 1. Instantiate a `hsproperties:ConnectionConfig` with the obtained credentials and initialize the connector with it.
 
-    ```ballerina 
+    ```ballerina
     configurable string clientId = ?;
     configurable string clientSecret = ?;
     configurable string refreshToken = ?;
@@ -147,7 +143,7 @@ import ballerina/oauth2;
 
 ### Step 3: Invoke the connector operation
 
-Now, utilize the available connector operations. A sample usecase is shown below.
+Now, utilize the available connector operations. A sample use case is shown below.
 
 #### Create a Property Group
 
@@ -171,7 +167,7 @@ bal run
 
 ## Examples
 
-The `Ballerina HubSpot CRM Properties Connector` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.properties/tree/8dfd490047721c5e72f0a8d995636860769e3c82/examples), covering the following use cases:
+The `Ballerina HubSpot CRM Properties Connector` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.properties/tree/main/examples), covering the following use cases:
 
 1. [Customer Behavior Handling](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.properties/tree/main/examples/customer-behavior)
 2. [Marketing Preference Management](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.properties/tree/main/examples/marketing-preference)
