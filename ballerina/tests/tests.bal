@@ -159,7 +159,7 @@ isolated function testUpdatePropertyGroup() returns error? {
     groups: ["live_tests", "mock_tests"]
 }
 isolated function testDeletePropertyGroup() returns error? {
-    error? response = check hubSpotProperti(es->/[testObjectType]/groups/[testPropertyGroupName].delete();
+    error? response = check hubSpotProperties->/[testObjectType]/groups/[testPropertyGroupName].delete();
     test:assertTrue(response == ());
 }
 
