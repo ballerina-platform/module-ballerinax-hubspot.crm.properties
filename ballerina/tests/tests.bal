@@ -14,7 +14,6 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import ballerina/http;
 import ballerina/oauth2;
 import ballerina/os;
 import ballerina/test;
@@ -116,8 +115,8 @@ isolated function testupdateAProperty() returns error? {
     groups: ["live_tests", "mock_tests"]
 }
 isolated function testArchiveProperty() returns error? {
-    http:Response response = check hubSpotProperties->/[testObjectType]/[testPropertyName].delete();
-    test:assertTrue(response.statusCode == 204);
+    error? response = check hubSpotProperties->/[testObjectType]/[testPropertyName].delete();
+    test:assertTrue(response == ());
 }
 
 // Group
@@ -160,8 +159,8 @@ isolated function testUpdatePropertyGroup() returns error? {
     groups: ["live_tests", "mock_tests"]
 }
 isolated function testDeletePropertyGroup() returns error? {
-    http:Response response = check hubSpotProperties->/[testObjectType]/groups/[testPropertyGroupName].delete();
-    test:assertTrue(response.statusCode == 204);
+    error? response = check hubSpotProperties->/[testObjectType]/groups/[testPropertyGroupName].delete();
+    test:assertTrue(response == ());
 }
 
 // batch
@@ -216,6 +215,6 @@ isolated function testgetPropertyBatch() returns error? {
 }
 isolated function testArchivePropertyBatch() returns error? {
     BatchInputPropertyName batchInputPropertyName = {inputs: [{"name": testBatchPropertyName1}, {"name": testBatchPropertyName2}]};
-    http:Response response = check hubSpotProperties->/[testObjectType]/batch/archive.post(payload = batchInputPropertyName);
-    test:assertTrue(response.statusCode == 204);
+    error? response = check hubSpotProperties->/[testObjectType]/batch/archive.post(payload = batchInputPropertyName);
+    test:assertTrue(response == ());
 }
