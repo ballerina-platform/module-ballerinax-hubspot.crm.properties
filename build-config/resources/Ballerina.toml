@@ -5,7 +5,7 @@ name = "hubspot.crm.properties"
 version = "@toml.version@"
 license = ["Apache-2.0"]
 authors = ["Ballerina"]
-keywords = ["hubspot", "CRM", "Properties Management", "Marketing Automation", "Customer Data", "Cost/Freemium"]
+keywords = ["Properties Management", "Marketing Automation", "Customer Data", "Cost/Freemium", "Vendor/HubSpot", "Area/CRM", "Type/Connector"]
 repository = "https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.properties"
 
 [build-options]
