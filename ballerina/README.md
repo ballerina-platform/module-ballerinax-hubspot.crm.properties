@@ -2,7 +2,14 @@
 
 [HubSpot ](https://www.hubspot.com/) is an AI-powered customer relationship management (CRM) platform.
 
-The `ballerinax/module-ballerinax-hubspot.crm.properties` connector offers APIs to connect and interact with the [Hubspot Properties API](https://developers.hubspot.com/docs/guides/api/crm/properties) endpoints, specifically based on the [HubSpot REST API](https://developers.hubspot.com/docs/reference/api/overview).
+The HubSpot connector offers APIs to connect and interact with the [Hubspot Properties API](https://developers.hubspot.com/docs/guides/api/crm/properties) endpoints, specifically based on the [HubSpot REST API](https://developers.hubspot.com/docs/reference/api/overview).
+
+### Key Features
+
+- Create, read, update, and delete CRM object properties
+- Manage property groups and field types
+- Batch operations for bulk property management
+- Support for custom property definitions across CRM objects
 
 ## Setup guide
 
