@@ -2,11 +2,12 @@
 distribution = "2201.12.0"
 org = "ballerinax"
 name = "hubspot.crm.properties"
-version = "2.0.0"
+version = "2.0.1"
 license = ["Apache-2.0"]
 authors = ["Ballerina"]
-keywords = ["Properties Management", "Marketing Automation", "Customer Data", "Cost/Freemium", "Vendor/HubSpot", "Area/CRM", "Type/Connector"]
+keywords = ["Properties Management", "Marketing Automation", "Customer Data", "Cost/Freemium", "Vendor/HubSpot", "Area/CRM & Sales", "Type/Connector"]
 repository = "https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.properties"
+icon = "icon.png"
 
 [build-options]
 observabilityIncluded = true
