@@ -7,6 +7,7 @@ license = ["Apache-2.0"]
 authors = ["Ballerina"]
 keywords = ["Properties Management", "Marketing Automation", "Customer Data", "Cost/Freemium", "Vendor/HubSpot", "Area/CRM & Sales", "Type/Connector"]
 repository = "https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.properties"
+icon = "icon.png"
 
 [build-options]
 observabilityIncluded = true
